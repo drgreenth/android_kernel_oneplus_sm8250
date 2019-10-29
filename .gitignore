@@ -146,3 +146,18 @@ kernel/configs/android-*.cfg
 
 # Oem charge directories
 #drivers/power/supply
+
+*.rej
+*.diff
+*.patch
+*.list
+out/*
+build/Changelog\.txt
+out
+build/Image\.gz-dtb
+build/Image-dtb
+upload/
+
+build/Image\.lz4-dtb
+
+build.log
