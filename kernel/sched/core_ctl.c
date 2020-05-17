@@ -1295,7 +1295,7 @@ static int cluster_init(const struct cpumask *mask)
 	cluster->min_cpus = 1;
 	cluster->max_cpus = cluster->num_cpus;
 	cluster->need_cpus = cluster->num_cpus;
-	cluster->offline_delay_ms = 100;
+	cluster->offline_delay_ms = 50;
 	cluster->task_thres = UINT_MAX;
 	cluster->nr_prev_assist_thresh = UINT_MAX;
 	cluster->nrrun = cluster->num_cpus;
