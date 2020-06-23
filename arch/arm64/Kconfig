@@ -295,6 +295,9 @@ config ARCH_SUPPORTS_UPROBES
 config ARCH_PROC_KCORE_TEXT
 	def_bool y
 
+config ARCH_INSTANTNOODLE
+	bool "OnePlus 8 support"
+
 source "arch/arm64/Kconfig.platforms"
 
 menu "Bus support"
