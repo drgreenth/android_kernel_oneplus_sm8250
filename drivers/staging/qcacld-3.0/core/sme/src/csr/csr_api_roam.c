@@ -70,6 +70,10 @@
 
 #include <ol_defines.h>
 
+#ifdef CONFIG_USERLAND_WORKER
+#include <linux/uci/uci.h>
+#endif
+
 #define RSN_AUTH_KEY_MGMT_SAE           WLAN_RSN_SEL(WLAN_AKM_SAE)
 #define MAX_PWR_FCC_CHAN_12 8
 #define MAX_PWR_FCC_CHAN_13 2
@@ -15867,6 +15871,17 @@ QDF_STATUS csr_send_join_req_msg(struct mac_context *mac, uint32_t sessionId,
 		qdf_mem_copy(&csr_join_req->self_mac_addr,
 			     &pSession->self_mac_addr,
 			     sizeof(tSirMacAddr));
+#ifdef CONFIG_USERLAND_WORKER
+		{
+			char ssidName[WLAN_SSID_MAX_LEN+1];
+			int i;
+			for (i=0; i<csr_join_req->ssId.length; i++) {
+				ssidName[i] = csr_join_req->ssId.ssId[i];
+			}
+			ssidName[csr_join_req->ssId.length]='\0';
+			uci_set_current_ssid(ssidName);
+		}
+#endif
 		sme_nofl_info("vdev-%d: Connecting to %.*s " QDF_MAC_ADDR_STR
 			      " rssi: %d freq: %d akm %d cipher: uc %d mc %d, CC: %c%c",
 			      sessionId, csr_join_req->ssId.length,
