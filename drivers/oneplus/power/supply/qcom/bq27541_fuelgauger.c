@@ -1201,7 +1201,7 @@ static void update_battery_soc_work(struct work_struct *work)
 	static int pre_plugin_status = 0;
 	static bool pre_dash_started = 0;
 
-	pr_info("plugin:%d,dash_start:%d:smooth:%d\n",
+	pr_debug("plugin:%d,dash_start:%d:smooth:%d\n",
 				is_usb_pluged(), get_dash_started(),bq27541_di->set_smoothing);
 	switch_flag = REFRESH_TRUE;
 	if (pre_plugin_status != is_usb_pluged()
